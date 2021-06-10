@@ -60,10 +60,11 @@ return new Promise ((resolve, reject) => {
 })
 .then((token) => {
   return {
-    statusCode: 200,
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
+    statusCode: 200,
+   
     body: JSON.stringify(token),
   };
 })
