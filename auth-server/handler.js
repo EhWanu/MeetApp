@@ -61,12 +61,16 @@ return new Promise ((resolve, reject) => {
 .then((token) => {
   return {
     statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
     body: JSON.stringify(token),
   };
 })
 .catch((err) => {
   console.error(err);
   return {
+    
     statusCode: 500,
     body: JSON.stringify(err),
   };
