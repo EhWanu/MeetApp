@@ -18,17 +18,14 @@
       }
     </style>
 
-
     <main id="container">
       <h1>OAuth2 Test</h1>
-        <h4><b>Step 1:</b> Get OAuth URL</h4>
-        <p>Click the button below to get your OAuth URL.</p>
-        <button id="getCode">Get OAuth URL</button>
-        <p id="result"></p>
-        <a id="authURL" href target="_blank">Click to authorize</a>
-
-
-        <h4>Step 2: Get your code and exchange for an access token</h4>
+      <h4><b>Step 1:</b> Get the OAuth URL</h4>
+      <p>Click the button below to get your OAuth URL.</p>
+      <button id="getURL">Get OAuth URL</button>
+      <p id="result"></p>
+      <a id="authURL" href target="_blank">Click to authorize</a>
+      <h4>Step 2: Get your code and exchange for an access token</h4>
       <p>
         After you’re redirected back to your Meet app on GitHub, copy the code
         from the URI.
@@ -53,7 +50,7 @@
       // Replace this with your own endpoint
       const getAuthURL = "https://gtujk48fb7.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url";
 
-      getCodeElement.onclick = function () {
+      getCodeElement.onClick = function () {
         fetch(getAuthURL)
           .then(function (response) {
             return response.json();
