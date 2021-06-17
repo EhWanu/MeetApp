@@ -1,3 +1,4 @@
+  
 import React, { Component } from 'react';
 
 class NumberofEvents extends Component {
@@ -34,4 +35,4 @@ class NumberofEvents extends Component {
   }
 }
 
-export default NumberofEvents;
+export default NumberofEvents
