@@ -3,12 +3,12 @@ import { shallow } from 'enzyme';
 import App from '../App';
 import EventList from '../EventList';
 import CitySearch from '../CitySearch';
-import NumberofEvents from '../NumberofEvents';
+import NumberOfEvents from '../NumberOfEvents';
 
 describe('<App /> component', () => {
   let AppWrapper;
   beforeAll(() => {
-    AppWrapper = shallow(<App />)
+    AppWrapper = shallow(<App />);
   });
 
   test('render list of events', () => {
@@ -17,9 +17,9 @@ describe('<App /> component', () => {
 
   test('render CitySearch', () => {
     expect(AppWrapper.find(CitySearch)).toHaveLength(1);
-  });
+  })
 
-  test('renders the NumberofEvents Bar', () => {
-    expect(AppWrapper.find(NumberofEvents)).toHaveLength(1);
-  });
-})
+  test('render CitySearch', () => {
+    expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1);
+  })
+});

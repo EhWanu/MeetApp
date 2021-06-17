@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class CitySearch extends Component {
-
   state = {
     query: '',
     suggestions: []
@@ -12,7 +11,6 @@ class CitySearch extends Component {
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
-    
     this.setState({
       query: value,
       suggestions,
@@ -36,12 +34,10 @@ class CitySearch extends Component {
         />
         <ul className="suggestions">
           {this.state.suggestions.map((suggestion) => (
-            <li 
+            <li
               key={suggestion}
               onClick={() => this.handleItemClicked(suggestion)}
-            >
-              {suggestion}
-            </li>
+            >{suggestion}</li>
           ))}
           <li key='all'>
             <b>See all cities</b>
