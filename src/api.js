@@ -1,6 +1,6 @@
 import { mockData } from './mock-data';
 import axios from 'axios';
-import NProgress from './nprogress';
+import NProgress from 'nprogress';
 
 const removeQuery = () => {
   if (window.history.pushState && window.location.pathname) {
@@ -59,7 +59,7 @@ export const getEvents = async () => {
 
 
 
-export const getAccessToken = () => {
+export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
   const tokenCheck = accessToken && (await checkToken(accessToken));
 
