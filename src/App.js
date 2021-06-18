@@ -4,6 +4,8 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberofEvents';
 import { getEvents, extractLocations } from './api';
+import './nprogress.css';
+
 
 
 
