@@ -1,36 +1,41 @@
-import React, { Component } from "react";
-
+import React, { Component } from 'react';
 class Event extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      expanded: false,
-    }
+  state = {
+    event: {},
+    showHideDetails: false,
+  };
 
-    this.toggleExpanded = this.toggleExpanded.bind(this);
-  }
-  toggleExpanded() {
-    this.setState({
-      expanded: !this.state.expanded
-    });
-  }
+  handleShowHideButton = () => {
+    if (this.state.showHideDetails === true) {
+      this.setState({ showHideDetails: false });
+    } else {
+      this.setState({ showHideDetails: true });
+    }
+  };
+
   render() {
+    const { event } = this.props;
     return (
-      <div>
-        <h2 className="event-title">{this.props.title}</h2>
-        <div className="basic-info">
-          <span>{this.props.startdate}</span>
-          <span>{this.props.location}</span>
-        </div>
+      <div className='event'>
+        <h1 className='name'>{event.summary}</h1>
+        <p>{event.start.dateTime}</p>
+        <p className='locations'>{event.location}</p>
+
+        {this.state.showHideDetails && (
+          <div className='event-details'>
+            <h2>About event:</h2>
+            <a href={event.htmlLink}>See Details on Google Calendar</a>
+            <p>{event.description}</p>
+          </div>
+        )}
+
         <button
-          className="show-details"
-          onClick={this.toggleExpanded}
-        >Show Details</button>
-        <div
-          className={`row ${this.state.expanded ? 'expanded' : 'normal'}`}
-        ></div>
-      </div>
-    )
+          className='details-btn'
+          onClick={() => this.handleShowHideButton()}>
+          {!this.state.showHideDetails ? 'Show Details' : 'Hide Details'}
+        </button>
+      </div>  
+    );
   }
 }
 
