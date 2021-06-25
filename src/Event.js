@@ -1,42 +1,50 @@
 import React, { Component } from 'react';
-class Event extends Component {
-  state = {
-    event: {},
-    showHideDetails: false,
-  };
 
-  handleShowHideButton = () => {
-    if (this.state.showHideDetails === true) {
-      this.setState({ showHideDetails: false });
+
+class Event extends Component {
+
+  state = {
+    showMore: false
+  }
+
+  showMore(){
+    if(this.state.showMore === false) {
+      this.setState({showMore: true})
     } else {
-      this.setState({ showHideDetails: true });
+      this.setState({showMore:false})
     }
-  };
+  }
+
+  showText() {
+    if(this.state.showMore === false) {
+     return "Show More"
+    } else {
+      return "Show Less";
+    }
+  }
+
+  desc(event) {
+    if(this.state.showMore === false) {
+     return ""
+    } else {
+      return event.description;
+    }
+  }
 
   render() {
     const { event } = this.props;
     return (
-      <div className='event'>
-        <h1 className='name'>{event.summary}</h1>
-        <p>{event.start.dateTime}</p>
-        <p className='locations'>{event.location}</p>
-
-        {this.state.showHideDetails && (
-          <div className='event-details'>
-            <h2>About event:</h2>
-            <a href={event.htmlLink}>See Details on Google Calendar</a>
-            <p>{event.description}</p>
-          </div>
-        )}
-
-        <button
-          className='details-btn'
-          onClick={() => this.handleShowHideButton()}>
-          {!this.state.showHideDetails ? 'Show Details' : 'Hide Details'}
-        </button>
-      </div>  
+      <>
+        <div className="event">
+          <h2>{event.summary}</h2>
+          <p><b>Creator:</b> {event.creator.email}</p>
+          <p><b>Start Time:</b> {event.start.dateTime}</p>
+          <p><b>Location:</b> {event.location}</p>
+          <p className="description">{this.desc(event)}</p>
+          <button className="details-btn" onClick={() => {this.showMore(event)}}>{this.showText()}</button>
+        </div>
+      </>
     );
   }
 }
-
 export default Event;
