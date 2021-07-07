@@ -1,47 +1,48 @@
-import React from 'react';
-import { loadFeature, defineFeature } from 'jest-cucumber';
-import { mount } from 'enzyme';
-import App from '../App';
-import { mockData } from '../mock-data';
+  
+import { loadFeature, defineFeature } from "jest-cucumber";
+import React from "react";
+import { mount, shallow } from "enzyme";
+import App from "../App";
+import NumberOfEvents from "../NumberOfEvents";
 
+const feature = loadFeature("./src/features/specifyNumberOfEvents.feature");
 
-const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
+defineFeature(feature, (test) => {
 
-defineFeature(feature, test => {
-
-  test('When user hasn’t specified a number, 32 events will be listed by default', ({ given, when, then }) => {
-
-    let AppWrapper;
-    given('that a user is on the main page', () => {
-      AppWrapper = mount(<App />);
+  test('When user hasn’t specified a number, 32 is the default number', ({ given, when, then }) => {
+    let Appwrapper;
+    let NumberOfEventsWrapper;
+    given('the page has fully loaded the events', () => {
+      Appwrapper = mount(<App />);
     });
 
-    when('the user doesn’t specify a number of desired events to see', () => {
+    when('the user loads the list of events without specifying number of events', () => {
+      NumberOfEventsWrapper = shallow(<NumberOfEvents updateEvents={() => { }} />);
     });
 
-    then('the default number of events, 32, will be displayed on the main page', () => {
-      AppWrapper.update();
-      // In this test mockdata only has 10 entries
-      expect(AppWrapper.find('.event')).toHaveLength(mockData.length)
+    then('up to 32 events are shown by default', () => {
+      expect(NumberOfEventsWrapper.state('eventCount')).toBe(32);
     });
   });
 
   test('User can change the number of events they want to see', ({ given, when, then }) => {
-
     let AppWrapper;
-    given('that a user is on the main page', () => {
+    let NumberOfEventsWrapper;
+    given('the page has fully loaded the events', () => {
       AppWrapper = mount(<App />);
     });
 
-    when('the user changes the default value of events showed to 8', () => {
-      AppWrapper.update();
-      AppWrapper.find('#number').simulate('change', { target: { value: 8 } });
+    when('the user specifies the number of events per page', () => {
+      const numberOfEvents = {
+        target: { value: 10 },
+      };
+      AppWrapper.find(".numberOfEventsInput").simulate("change", numberOfEvents);
     });
 
-    then('the page will only display 8 events', () => {
-      AppWrapper.update();
-      expect(AppWrapper.find('.event')).toHaveLength(AppWrapper.state('eventsToShow'))
+    then('the specified number of events populate on the screen', () => {
+      NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+      expect(NumberOfEventsWrapper.state("eventCount")).toBe(10);
     });
   });
 
-});
+})

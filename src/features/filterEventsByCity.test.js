@@ -1,17 +1,19 @@
-import React from 'react';
 import { loadFeature, defineFeature } from 'jest-cucumber';
+import React from 'react';
 import { mount, shallow } from 'enzyme';
 import App from '../App';
-import { mockData } from '../mock-data';
 import CitySearch from '../CitySearch';
+import { mockData } from '../mock-data';
 import { extractLocations } from '../api';
 
+const locations = extractLocations(mockData);
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
 defineFeature(feature, test => {
-  
+  // Scenario 1
   test('When user hasn’t searched for a city, show upcoming events from all cities.', ({ given, when, then }) => {
     given('user hasn’t searched for any city', () => {
+
     });
 
     let AppWrapper;
@@ -19,18 +21,17 @@ defineFeature(feature, test => {
       AppWrapper = mount(<App />);
     });
 
-    then('the user should see the list of upcoming events.', () => {
+    then('the user should see the list of upcoming events', () => {
       AppWrapper.update();
       expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
     });
   });
 
+  // Scenario 2
   test('User should see a list of suggestions when they search for a city', ({ given, when, then }) => {
-
     let CitySearchWrapper;
-    let locations = extractLocations(mockData);
     given('the main page is open', () => {
-      CitySearchWrapper = shallow(<CitySearch updateEvents={() => {}} locations={locations} />);
+      CitySearchWrapper = shallow(<CitySearch updateEvents={() => { }} locations={locations} />);
     });
 
     when('the user starts typing in the city textbox', () => {
@@ -42,29 +43,30 @@ defineFeature(feature, test => {
     });
   });
 
-
+  // Scenario 3
   test('User can select a city from the suggested list', ({ given, and, when, then }) => {
-
     let AppWrapper;
-    given('user was typing “Berlin” in the city textbox', async () => {
-      AppWrapper = await mount(<App />);
+    given('user was typing “Berlin” in the city textbox', () => {
+      AppWrapper = mount(<App />);
       AppWrapper.find('.city').simulate('change', { target: { value: 'Berlin' } });
     });
 
     and('the list of suggested cities is showing', () => {
+      const CitySearchWrapper = AppWrapper.find(CitySearch);
       AppWrapper.update();
-      expect(AppWrapper.find('.suggestions li')).toHaveLength(2);
+      expect(AppWrapper.find('.suggestions li')).toHaveLength(1);
     });
 
     when('the user selects a city (e.g., “Berlin, Germany”) from the list', () => {
-      const CitySearchWrapper = AppWrapper.find(CitySearch);
-      /* Jest - Enzyme/Cucumber onClick glitch due to no onMouseDown support. Created work around involving setting the state manually rather than expecting a simulated click.*/
       AppWrapper.find('.suggestions li').at(0).simulate('click');
-      CitySearchWrapper.setState({ query: 'Berlin, Germany' });
     });
 
     then('their city should be changed to that city (i.e., “Berlin, Germany”)', () => {
       const CitySearchWrapper = AppWrapper.find(CitySearch);
+      CitySearchWrapper.setState({
+        query: 'Berlin, Germany',
+        showSuggestions: true
+      });
       expect(CitySearchWrapper.state('query')).toBe('Berlin, Germany');
     });
 

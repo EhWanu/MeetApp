@@ -1,11 +1,11 @@
 Feature: Specify number of events
 
-Scenario: When user hasn’t specified a number, 32 events will be listed by default
-  Given that a user is on the main page
-  When the user doesn’t specify a number of desired events to see
-  Then the default number of events, 32, will be displayed on the main page
+  Scenario: When user hasn’t specified a number, 32 is the default number
+    Given the page has fully loaded the events
+    When the user loads the list of events without specifying number of events
+    Then up to 32 events are shown by default
 
-Scenario: User can change the number of events they want to see
-  Given that a user is on the main page 
-  When the user changes the default value of events showed to 8
-  Then the page will only display 8 events
+  Scenario: User can change the number of events they want to see
+    Given the page has fully loaded the events
+    When the user specifies the number of events per page 
+    Then the specified number of events populate on the screen

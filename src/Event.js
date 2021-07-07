@@ -1,50 +1,46 @@
 import React, { Component } from 'react';
 
-
 class Event extends Component {
-
   state = {
-    showMore: false
-  }
+    showHideDetails: false,
+  };
 
-  showMore(){
-    if(this.state.showMore === false) {
-      this.setState({showMore: true})
+  // show details button
+  handleShowButton = () => {
+    if (this.state.showHideDetails === true) {
+      this.setState({ showHideDetails: false });
     } else {
-      this.setState({showMore:false})
+      this.setState({ showHideDetails: true });
     }
-  }
-
-  showText() {
-    if(this.state.showMore === false) {
-     return "Show More"
-    } else {
-      return "Show Less";
-    }
-  }
-
-  desc(event) {
-    if(this.state.showMore === false) {
-     return ""
-    } else {
-      return event.description;
-    }
-  }
+  };
 
   render() {
     const { event } = this.props;
     return (
-      <>
-        <div className="event">
-          <h2>{event.summary}</h2>
-          <p><b>Creator:</b> {event.creator.email}</p>
-          <p><b>Start Time:</b> {event.start.dateTime}</p>
-          <p><b>Location:</b> {event.location}</p>
-          <p className="description">{this.desc(event)}</p>
-          <button className="details-btn" onClick={() => {this.showMore(event)}}>{this.showText()}</button>
-        </div>
-      </>
+      <div className='event' onClick={() => this.handleShowButton()}>
+        <h1 className='eventName'>{event.summary}</h1>
+        <p className='eventLocation'>{event.location}</p>
+
+        {/* <span className="startDateTime">
+          {event.start.dateTime} ({event.start.timeZone} Standard Time)
+          </span> */}
+
+        {this.state.showHideDetails && (
+          <div className='eventDetails'>
+            <h2>About event:</h2>
+            <p>{event.description}</p>
+          </div>
+        )}
+
+        <button
+          className='showDetailsButton'
+          onClick={() => this.handleShowButton()}
+        >
+          {!this.state.showHideDetails ? 'Show Details' : 'Hide Details'}
+        </button>
+      </div>
     );
   }
 }
+
 export default Event;

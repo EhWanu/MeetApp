@@ -1,73 +1,70 @@
-import React from 'react';
 import { loadFeature, defineFeature } from 'jest-cucumber';
-import { mount} from 'enzyme';
+import React from 'react';
+import { mount, shallow } from 'enzyme';
 import App from '../App';
-import { mockData } from '../mock-data';
 import Event from '../Event';
+import EventList from "../EventList";
+import { mockData } from '../mock-data';
+import { extractLocations } from '../api';
 
-const feature = loadFeature('./src/features/showHIdeAnEventsDetails.feature');
+const feature = loadFeature('./src/features/showHideAnEventsDetails.feature');
 
 defineFeature(feature, test => {
-  test('An event element is collapsed by default', ({ given, when, then }) => {
-    given('the user has just logged in', () => {
+  let EventListWrapper;
+  let EventWrapper;
+  let AppWrapper;
+
+  test('An event element is collapsed by default', ({ given, and, when, then }) => {
+    given('the page has fully loaded the events', () => {
+      EventListWrapper = mount(<EventList events={mockData} />);
+      EventWrapper = mount(<Event event={mockData[0]} />);
     });
 
-    let AppWrapper
-    when('the user opens an app', () => {
+    and('app loaded', () => {
       AppWrapper = mount(<App />);
     });
 
-    then('each event has a show more button to expand the element revealing more details', () => {
+    when('the user opens the application', () => {
+      expect(EventWrapper.find(".eventDetails")).toHaveLength(0);
+    });
+
+    then('the user should see all the events in the city but not the details', () => {
       AppWrapper.update();
-      expect(AppWrapper.find('.details-btn')).toHaveLength(mockData.length);
+      expect(AppWrapper.find(".eventDetails")).toHaveLength(0);
     });
   });
 
   test('User can expand an event to see its details', ({ given, when, then }) => {
-    let AppWrapper;
-    given('that the user is on the events page', () => {
+    given('the event detail is true', () => {
       AppWrapper = mount(<App />);
+      EventListWrapper = mount(<EventList events={mockData} />);
+      EventWrapper = mount(<Event event={mockData[0]} />);
     });
 
-    when('the user clicks on show more details button', () => {
-      AppWrapper.update();
-      const EventWrapper = AppWrapper.find(Event)
-      /* Jest - Enzyme/Cucumber onClick glitch due to no onMouseDown support. Created work around involving setting the state manually rather than expecting a simulated click.*/
-      AppWrapper.find('.details-btn').at(0).simulate('click');
-      EventWrapper.at(0).setState({ showMore: true});
+    when('user click the event', () => {
+      EventWrapper.find(".showDetailsButton").simulate("click");
     });
 
-    then('the event card expands revealing more detail', () => {
-      AppWrapper.update();
-      const EventWrapper = AppWrapper.find(Event);
-      const eventDetails = EventWrapper.find('.description').at(0);
-      expect(eventDetails.text()).not.toBeNull()
+    then('event box expands and shows the details', () => {
+      expect(EventWrapper.find(".eventDetails")).toHaveLength(1);
     });
   });
 
-  test('User can collapse an event to hide its details', ({ given, when, then }) => {
-    let AppWrapper;
-    let EventWrapper;
-    given('that the user has clicked on a show more button on the event card', async () => {
-      AppWrapper = await mount(<App />);
-      AppWrapper.update();
-      EventWrapper = AppWrapper.find(Event);
-      EventWrapper.at(0).setState({ showMore: true});
+  test('User can collapse an event to hide its details.', ({ given, when, then }) => {
+    given('event details box has expanded', () => {
+      AppWrapper = mount(<App />);
+      EventListWrapper = mount(<EventList events={mockData} />);
+      EventWrapper = mount(<Event event={mockData[0]} />);
+      EventWrapper.find(".showDetailsButton").simulate("click");
     });
 
-    when('the user clicks on the hide details button on the event card', () => {
-      AppWrapper.update();
-      EventWrapper = AppWrapper.find(Event)
-      /* Jest - Enzyme/Cucumber onClick glitch due to no onMouseDown support. Created work around involving setting the state manually rather than expecting a simulated click.*/
-      AppWrapper.find('.details-btn').at(0).simulate('click');
-      EventWrapper.at(0).setState({ showMore: false});
+    when('the user clicks the collapse button', () => {
+      EventWrapper.find(".showDetailsButton").simulate("click");
     });
 
-    then('revealed details hide and the expanded UI shrinks', () => {
-      AppWrapper.update();
-      EventWrapper = AppWrapper.find(Event);
-      const eventDetails = EventWrapper.find('.description').at(0);
-      expect(eventDetails.text()).toBe("")
+    then('event box collapses and hides the details', () => {
+      expect(EventWrapper.find(".eventDetails")).toHaveLength(0);
     });
   });
+
 });
