@@ -1,11 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
   text-align: center;
-  padding: 2% 5%;
+  padding: 2% 5%;  
 }
 
 .App * {
   box-sizing: border-box;
+}
+
+body{
+  font-family: Roboto, serif;
+  color: white;
+  background: linear-gradient(#2E453E, #E8EBB7),
+     no-repeat center center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 ul {
@@ -17,6 +26,10 @@ p {
   margin: 5px 0;
 }
 
+.eventTitle{
+  font-size: 3em;
+}
+
 .display-none {
   display: none;
 }
@@ -24,12 +37,21 @@ p {
   display: block;
 }
 
+h1{
+  font-size: 2em;  
+}
+
+label{
+  font-size: 1.5em;
+  text-shadow: 4px 4px #2E453E;
+}
+
 input[type="text"],
 input[type="number"] {
   padding: 8px 6px 8px 10px;
   border-radius: 4px;
   outline: none;
-  border: 1px solid #ccc;
+  border: 1px solid #E8EBB7;
   font-size: 14px;
   line-height: 20px;
   align-self: center;
@@ -49,21 +71,19 @@ input[type="number"] {
   position: relative;
 }
 
-.suggestions {
-  width: 250px;
-  position: absolute;
+.suggestions{
+  color: black;
   z-index: 2;
-  align-self: center;
   margin: 0;
-  top: 43px;
-  font-size: 14px;
-  box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
+  width: 250px;
+  align-self: center;
+  box-shadow: 10px 10px 16px -12px #2E453E;
 }
 
 .suggestions > li {
   text-align: left;
   padding: 8px 6px 8px 10px;
-  background-color: #eee;
+  background-color: #E8EBB7;
   cursor: default;
 }
 
@@ -73,26 +93,52 @@ input[type="number"] {
 }
 
 .suggestions > li:hover {
-  background-color: #bcdcdb;
+  background-color: #F96D5B;
 }
 
 .event {
   padding: 10px 10px 35px;
   margin-bottom: 10px;
   text-align: left;
-  border: 1px solid #ccc;
+  border: 1px solid #E8EBB7;
   border-radius: 4px;
   position: relative;
+  background-color: #589970;
+  color: white;
+  border-radius: 15px;
 }
 
-.details-btn {
+.event:hover{
+  cursor: pointer;
+  background-color: #2E453E;
+}
+
+.showDetailsButton {
   position: absolute;
   right: 5px;
   bottom: 5px;
   padding: 5px 8px;
-  border-radius: 4px;
-  outline: none;
-  cursor: pointer;
+  box-shadow:inset 0px 1px 0px 0px #2E453E;
+	background:linear-gradient(to bottom, #ffffff 5%, #E8EBB7 100%);
+	background-color:#2E453E;
+	border-radius:6px;
+	border:1px solid #2E453E;
+	display:inline-block;
+	cursor:pointer;
+	color:#2E453E;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+  font-size: 1.2em;
+}
+
+.showDetailsButton:hover {
+	background:linear-gradient(to bottom, #2E453E 5%, #F96D5B 100%);
+}
+.showDetailsButton:active {
+	position:relative;
+	top:1px;
 }
 
 .name {
@@ -145,60 +191,6 @@ input[type="number"] {
 .recharts-surface {
   overflow: visible;
 }
-
-.login-button {
-  color: #494949;
-  text-transform: uppercase;
-  text-decoration: none;
-  background: #ffffff;
-  padding: 20px;
-  border: 4px solid #494949;
-  display: inline-block;
-  transition: all 0.4s ease 0s;
-  min-width: 10rem;
-  margin: 1rem;
-}
-
-.google-btn {
-  width: 184px;
-  height: 42px;
-  margin: 1rem;
-  background-color: #4285f4;
-  border-radius: 2px;
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
-}
-.google-btn:hover {
-  box-shadow: 0 0 6px #4285f4;
-}
-.google-btn:active {
-  background: #1669f2;
-}
-.google-icon-wrapper {
-  position: absolute;
-  margin-top: 1px;
-  margin-left: 1px;
-  width: 40px;
-  height: 40px;
-  border-radius: 2px;
-  background-color: #fff;
-}
-.google-icon {
-  position: absolute;
-  margin-top: 11px;
-  margin-left: -8px;
-  width: 18px;
-  height: 18px;
-}
-.btn-text {
-  float: right;
-  margin: 11px 11px 0 0;
-  color: #fff;
-  font-size: 14px;
-  letter-spacing: 0.2px;
-  font-family: "Roboto";
-}
-
-
 
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
