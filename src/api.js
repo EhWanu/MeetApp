@@ -28,7 +28,7 @@
      const code = await searchParams.get('code');
      if (!code) {
        const results = await axios.get(
-         'https://1up91ommwh.execute-api.ca-central-1.amazonaws.com/dev/api/get-auth-url'
+         'https://gtujk48fb7.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url'
        );
        const { authUrl } = results.data;
        return (window.location.href = authUrl);
