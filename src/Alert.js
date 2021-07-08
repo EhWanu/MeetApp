@@ -1,9 +1,10 @@
+  
 import React, { Component } from "react";
 
 class Alert extends Component {
   constructor(props) {
     super(props);
-    this.color = 'blue';
+    this.color = null;
   }
 
   getStyle = () => {
@@ -35,5 +36,12 @@ class ErrorAlert extends Alert {
   }
 }
 
+class WarningAlert extends Alert {
+  constructor(props) {
+    super(props)
+    this.color = 'yellow'
+  }
+}
+
 export default Alert;
-export { InfoAlert, ErrorAlert }
+export { InfoAlert, ErrorAlert, WarningAlert };

@@ -173,7 +173,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/auth-server/dev/1623427772614-2021-06-11T16:09:32.614Z/auth-server.zip"
+          "S3Key": "serverless/auth-server/dev/1625765077158-2021-07-08T17:24:37.158Z/auth-server.zip"
         },
         "Handler": "handler.getAuthURL",
         "Runtime": "nodejs12.x",
@@ -182,9 +182,9 @@
         "Timeout": 60,
         "Environment": {
           "Variables": {
-            "CLIENT_ID": "959904285857-40kgjc5k4976d5mbvtglbd52fb734ibm.apps.googleusercontent.com",
-            "CLIENT_SECRET": "IqZp-gJaXUdZDJ-ezN21EjnU",
-            "PROJECT_ID": "meet-316422",
+            "CLIENT_ID": "299229680743-gfolp288jcp4d7dfhippk30nshq8jjq9.apps.googleusercontent.com",
+            "CLIENT_SECRET": "V6GanM8eT8-DYqKsmFPSVGF0",
+            "PROJECT_ID": "speedy-filament-305118",
             "CALENDAR_ID": "fullstackwebdev@careerfoundry.com"
           }
         },
@@ -206,7 +206,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/auth-server/dev/1623427772614-2021-06-11T16:09:32.614Z/auth-server.zip"
+          "S3Key": "serverless/auth-server/dev/1625765077158-2021-07-08T17:24:37.158Z/auth-server.zip"
         },
         "Handler": "handler.getAccessToken",
         "Runtime": "nodejs12.x",
@@ -215,9 +215,9 @@
         "Timeout": 60,
         "Environment": {
           "Variables": {
-            "CLIENT_ID": "959904285857-40kgjc5k4976d5mbvtglbd52fb734ibm.apps.googleusercontent.com",
-            "CLIENT_SECRET": "IqZp-gJaXUdZDJ-ezN21EjnU",
-            "PROJECT_ID": "meet-316422",
+            "CLIENT_ID": "299229680743-gfolp288jcp4d7dfhippk30nshq8jjq9.apps.googleusercontent.com",
+            "CLIENT_SECRET": "V6GanM8eT8-DYqKsmFPSVGF0",
+            "PROJECT_ID": "speedy-filament-305118",
             "CALENDAR_ID": "fullstackwebdev@careerfoundry.com"
           }
         },
@@ -239,7 +239,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/auth-server/dev/1623427772614-2021-06-11T16:09:32.614Z/auth-server.zip"
+          "S3Key": "serverless/auth-server/dev/1625765077158-2021-07-08T17:24:37.158Z/auth-server.zip"
         },
         "Handler": "handler.getCalendarEvents",
         "Runtime": "nodejs12.x",
@@ -248,9 +248,9 @@
         "Timeout": 60,
         "Environment": {
           "Variables": {
-            "CLIENT_ID": "959904285857-40kgjc5k4976d5mbvtglbd52fb734ibm.apps.googleusercontent.com",
-            "CLIENT_SECRET": "IqZp-gJaXUdZDJ-ezN21EjnU",
-            "PROJECT_ID": "meet-316422",
+            "CLIENT_ID": "299229680743-gfolp288jcp4d7dfhippk30nshq8jjq9.apps.googleusercontent.com",
+            "CLIENT_SECRET": "V6GanM8eT8-DYqKsmFPSVGF0",
+            "PROJECT_ID": "speedy-filament-305118",
             "CALENDAR_ID": "fullstackwebdev@careerfoundry.com"
           }
         },
@@ -265,34 +265,34 @@
         "GetCalendarEventsLogGroup"
       ]
     },
-    "GetAuthURLLambdaVersionMATlud8FidR9gHdmxEmrrUqKzEZmk9GTW6bDc2JVbE": {
+    "GetAuthURLLambdaVersionoYJtezasUmS7ZaSTRU2aLCwsY5xMrpUxnDBmZhvWvQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetAuthURLLambdaFunction"
         },
-        "CodeSha256": "fo/vCiwntHrv8XLIcOVpyvfSiEhuH6L3M67kgvqazmg="
+        "CodeSha256": "EiTQwPbiHF1vq/0aaJh3PLrNWKjBvHg0T7VjrwFx4iA="
       }
     },
-    "GetAccessTokenLambdaVersionkpzzHesESMhakBkJ1J2YtPWDIcTQ2dhVxohgoYsg": {
+    "GetAccessTokenLambdaVersiongcQhX0NqoKtsgirX6GjlHCFqR3yXmvqdi4Np3FOfUAM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetAccessTokenLambdaFunction"
         },
-        "CodeSha256": "fo/vCiwntHrv8XLIcOVpyvfSiEhuH6L3M67kgvqazmg="
+        "CodeSha256": "EiTQwPbiHF1vq/0aaJh3PLrNWKjBvHg0T7VjrwFx4iA="
       }
     },
-    "GetCalendarEventsLambdaVersionxn1E2EOZGPdLGHCAT98r50KzmNF3vIAx54PuGMQ4": {
+    "GetCalendarEventsLambdaVersion5p9xp4kjCwxtgS5uOofXEsYRibJOQV9WZc4VBOnY3w": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetCalendarEventsLambdaFunction"
         },
-        "CodeSha256": "fo/vCiwntHrv8XLIcOVpyvfSiEhuH6L3M67kgvqazmg="
+        "CodeSha256": "EiTQwPbiHF1vq/0aaJh3PLrNWKjBvHg0T7VjrwFx4iA="
       }
     },
     "ApiGatewayRestApi": {
@@ -511,7 +511,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1623427756667": {
+    "ApiGatewayDeployment1625765076182": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -649,7 +649,7 @@
     "GetAuthURLLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetAuthURLLambdaVersionMATlud8FidR9gHdmxEmrrUqKzEZmk9GTW6bDc2JVbE"
+        "Ref": "GetAuthURLLambdaVersionoYJtezasUmS7ZaSTRU2aLCwsY5xMrpUxnDBmZhvWvQ"
       },
       "Export": {
         "Name": "sls-auth-server-dev-GetAuthURLLambdaFunctionQualifiedArn"
@@ -658,7 +658,7 @@
     "GetAccessTokenLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetAccessTokenLambdaVersionkpzzHesESMhakBkJ1J2YtPWDIcTQ2dhVxohgoYsg"
+        "Ref": "GetAccessTokenLambdaVersiongcQhX0NqoKtsgirX6GjlHCFqR3yXmvqdi4Np3FOfUAM"
       },
       "Export": {
         "Name": "sls-auth-server-dev-GetAccessTokenLambdaFunctionQualifiedArn"
@@ -667,7 +667,7 @@
     "GetCalendarEventsLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetCalendarEventsLambdaVersionxn1E2EOZGPdLGHCAT98r50KzmNF3vIAx54PuGMQ4"
+        "Ref": "GetCalendarEventsLambdaVersion5p9xp4kjCwxtgS5uOofXEsYRibJOQV9WZc4VBOnY3w"
       },
       "Export": {
         "Name": "sls-auth-server-dev-GetCalendarEventsLambdaFunctionQualifiedArn"
