@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { InfoAlert } from './Alert';
+import InfoAlert from './Alert';
+
 class CitySearch extends Component {
   state = {
     query: '',
@@ -10,7 +11,7 @@ class CitySearch extends Component {
   // update state of city in text input
   handleInputChanged = (event) => {
     const value = event.target.value;
-    this.setState({showSuggestions:true});
+    this.setState({ showSuggestions: true });
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
@@ -23,10 +24,10 @@ class CitySearch extends Component {
       return this.setState({
         query: value,
         suggestions,
-        infoText:''
+        infoText: ''
       });
     }
-  };
+  }
 
   // update query state when clicking suggested
   handleItemClicked = (suggestion) => {
@@ -41,8 +42,7 @@ class CitySearch extends Component {
   render() {
     return (
       <div className='CitySearch'>
-        <InfoAlert text={this.state.infoText} />
-        <h1 className='eventTitle'>MeetApp</h1>
+        <h1 className='eventTitle'>Event Meetup App</h1>
         <label>Choose your nearest city</label>
         {/* text input */}
         <input
@@ -69,6 +69,7 @@ class CitySearch extends Component {
             <b>See all cities</b>
           </li>
         </ul>
+        <InfoAlert text={this.state.infoText} />
       </div>
     );
   }
