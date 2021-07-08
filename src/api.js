@@ -100,7 +100,7 @@
  const getToken = async (code) => {
    const encodeCode = encodeURIComponent(code);
    const { access_token } = await fetch(
-     `https://gtujk48fb7.execute-api.us-east-2.amazonaws.com/dev/api/token${encodeCode}`
+     `https://gtujk48fb7.execute-api.us-east-2.amazonaws.com/dev/api/token/${encodeCode}`
    )
      .then((res) => {
        return res.json();
