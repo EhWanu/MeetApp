@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
+import InfoAlert from './InfoAlert';
 
 class App extends Component {
   state = {
@@ -23,9 +24,19 @@ class App extends Component {
     });
   }
 
-  // load events with app
+  
   componentDidMount() {
     this.mounted = true;
+    if (!navigator.onLine) {
+      this.setState({
+        infoText:
+          'You are in offline mode',
+      });
+    } else {
+      this.setState({
+        infoText: '',
+      });
+    }
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({ events, locations: extractLocations(events) });
@@ -40,8 +51,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <InfoAlert text={this.state.infoText} />
+        <h1 className='eventTitle'>Event Meetup App</h1>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumberOfEvents />
+        <NumberOfEvents updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
       </div>
     );
