@@ -66,7 +66,7 @@ class App extends Component {
     return (
       <div className="App">
         <InfoAlert text={this.state.infoText} />
-        <h1 className='eventTitle'>Event Meetup App</h1>
+        <h1 className='eventTitle'>MeetApp</h1>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents updateEvents={this.updateEvents} />
         <h1 className='chartLabel'>Events in each city</h1>
